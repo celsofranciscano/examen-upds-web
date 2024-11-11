@@ -3,15 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Verificación de Palíndromos</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: #ffffff;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* Estilo del input y botón */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #4e54c8;
+            background-color: #ffffff;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ffdd59;
+            color: #333;
+        }
+
+        /* Resultado */
+        .result {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+    <h1>Verificación de Palíndromos</h1>
+    <div class="container">
+        <input type="text" id="textInput" placeholder="Escribe una frase">
+        <button onclick="verificarPalindromo()">Verificar</button>
+        <div id="resultado" class="result"></div>
+    </div>
 
     <script>
+        function limpiarTexto(texto) {
+            return texto
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, '') // Elimina acentos
+                .replace(/[^a-z0-9]/g, ''); // Elimina espacios y puntuación
+        }
 
+        function verificarPalindromo() {
+            const texto = document.getElementById("textInput").value;
+            const textoLimpio = limpiarTexto(texto);
+            const esPalindromo = textoLimpio === textoLimpio.split('').reverse().join('');
+            const resultado = document.getElementById("resultado");
 
-
+            if (esPalindromo) {
+                resultado.textContent = "¡Es un palíndromo!";
+                resultado.style.color = "limegreen";
+            } else {
+                resultado.textContent = "No es un palíndromo.";
+                resultado.style.color = "red";
+            }
+        }
     </script>
-    
 </body>
 </html>
