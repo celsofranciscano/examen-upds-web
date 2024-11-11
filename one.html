@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificación de Palíndromos</title>
     <style>
-        /* Estilos generales */
+      
         * {
             margin: 0;
             padding: 0;
@@ -67,7 +67,7 @@
             color: #333;
         }
 
-        /* Resultado */
+     
         .result {
             margin-top: 15px;
             font-size: 1.2rem;
@@ -88,8 +88,8 @@
             return texto
                 .toLowerCase()
                 .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, '') // Elimina acentos
-                .replace(/[^a-z0-9]/g, ''); // Elimina espacios y puntuación
+                .replace(/[\u0300-\u036f]/g, '') 
+                .replace(/[^a-z0-9]/g, ''); 
         }
 
         function verificarPalindromo() {

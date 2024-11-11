@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario de Registro</title>
     <style>
-      /* Estilos generales */
       * {
         margin: 0;
         padding: 0;
@@ -29,7 +28,6 @@
         text-align: center;
       }
 
-      /* Contenedor del formulario */
       .form-container {
         background-color: rgba(255, 255, 255, 0.2);
         padding: 20px;
@@ -44,7 +42,6 @@
         gap: 20px; /* Espacio entre columnas y filas */
       }
 
-      /* Estilos de los campos del formulario */
       label {
         display: block;
         margin-top: 10px;
@@ -65,7 +62,6 @@
         border-radius: 5px;
       }
 
-      /* Botón de envío */
       button {
         column-span: all;
         padding: 10px 20px;
@@ -85,7 +81,6 @@
         color: #333;
       }
 
-      /* Mensaje de error */
       .error {
         color: red;
         font-size: 0.9rem;
@@ -103,58 +98,43 @@
         <label for="nombre"
           >Nombre
 
-          <input type="text" id="nombre" name="nombre" required />
+          <input type="text" id="nombre" name="nombre" />
         </label>
 
         <label for="apellidoPaterno"
           >Apellido Paterno
 
-          <input
-            type="text"
-            id="apellidoPaterno"
-            name="apellidoPaterno"
-            required
-          />
+          <input type="text" id="apellidoPaterno" name="apellidoPaterno" />
         </label>
 
         <label for="apellidoMaterno"
           >Apellido Materno
 
-          <input
-            type="text"
-            id="apellidoMaterno"
-            name="apellidoMaterno"
-            required
-          />
+          <input type="text" id="apellidoMaterno" name="apellidoMaterno" />
         </label>
 
         <label for="direccion"
           >Dirección
 
-          <input type="text" id="direccion" name="direccion" required />
+          <input type="text" id="direccion" name="direccion" />
         </label>
 
         <label for="edad"
           >Edad
 
-          <input type="number" id="edad" name="edad" min="1" required />
+          <input type="number" id="edad" name="edad" min="1" />
         </label>
 
         <label for="fechaNacimiento"
           >Fecha de Nacimiento
 
-          <input
-            type="date"
-            id="fechaNacimiento"
-            name="fechaNacimiento"
-            required
-          />
+          <input type="date" id="fechaNacimiento" name="fechaNacimiento" />
         </label>
 
         <label for="sexo"
           >Sexo
 
-          <select id="sexo" name="sexo" required>
+          <select id="sexo" name="sexo">
             <option value="">Selecciona tu sexo</option>
             <option value="masculino">Masculino</option>
             <option value="femenino">Femenino</option>
@@ -165,7 +145,7 @@
         <label for="email"
           >Email
 
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email" />
         </label>
 
         <label for="telefono"
@@ -177,14 +157,13 @@
             name="telefono"
             pattern="[0-9]{10}"
             placeholder="10 dígitos"
-            required
           />
         </label>
 
         <label for="ciudad"
           >Ciudad
 
-          <input type="text" id="ciudad" name="ciudad" required />
+          <input type="text" id="ciudad" name="ciudad" />
         </label>
 
         <button type="submit">Enviar</button>
@@ -197,7 +176,6 @@
         const errorMensaje = document.getElementById("errorMensaje");
         errorMensaje.textContent = "";
 
-        // Verificar cada campo
         const nombre = document.getElementById("nombre").value.trim();
         const apellidoPaterno = document
           .getElementById("apellidoPaterno")
@@ -230,13 +208,18 @@
           return false;
         }
 
-        // Validar que el teléfono tenga 10 dígitos
         if (!/^\d{10}$/.test(telefono)) {
           errorMensaje.textContent = "El teléfono debe contener 10 dígitos.";
           return false;
         }
 
-        return true; // Si todo está bien, el formulario se envía
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          errorMensaje.textContent = "Por favor, ingresa un email válido.";
+          return false;
+        }
+
+        return true;
       }
     </script>
   </body>
